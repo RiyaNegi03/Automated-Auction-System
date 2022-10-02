@@ -1,5 +1,20 @@
 package com.masai.dao;
-
+import com.masai.users.Buyer;
 public interface BuyerDao {
-	public String registerSeller(int bid, String bname,String bemail, String password);
+	
+
+	
+
+		
+	
+
+		public String RegisterBuyer(Buyer b);
+
+		
+
+		
+
+	
+
+		
 }

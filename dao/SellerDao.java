@@ -1,5 +1,15 @@
 package com.masai.dao;
+import com.masai.users.Product;
+import com.masai.users.Seller;
 
 public interface SellerDao {
-	public String registerSeller(int sid, String sname,String semail, String password);
+
+    public String RegisterSeller(Seller seller);
+	
+	public String ProductList(Product p);
+	
+	public String Updateproduct(Product p ,int id);
+	
+	public String DeleteProduct(Product p, int id);
+	
 }
