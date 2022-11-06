@@ -9,7 +9,7 @@ public interface SellerDao {
 	public String ProductList(Product p);
 	
 	public String Updateproduct(Product p ,int id);
-	
-	public String DeleteProduct(Product p, int id);
+
+	public String DeleteProduct(int id);	
 	
 }

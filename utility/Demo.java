@@ -10,7 +10,7 @@ public class Demo {
 		Connection conn= DBUtil.provideConnection();
 		
 		if(conn != null) {
-			System.out.println("Conected...");
+			System.out.println("Connected...");
 		}
 		
 		

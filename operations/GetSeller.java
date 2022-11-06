@@ -1,5 +1,6 @@
 package com.masai.operations;
 import com.masai.dao.AdminDao;
+
 import com.masai.dao.AdminDaoImpl;
 import com.masai.users.Seller;
 
@@ -10,7 +11,7 @@ public class GetSeller {
 
 		AdminDao ad = new AdminDaoImpl();
 		
-		Seller s = ad.getSeeler();
+		Seller s = ad.getSeller();
 		
 		if(s != null)
 			System.out.println(s);

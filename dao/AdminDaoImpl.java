@@ -1,5 +1,6 @@
 package com.masai.dao;
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -40,7 +41,7 @@ public class AdminDaoImpl implements AdminDao{
 	}
 
 	@Override
-	public Seller getSeeler() {
+	public Seller getSeller1() {
 		
 		Seller s = null;
 		
@@ -66,6 +67,12 @@ public class AdminDaoImpl implements AdminDao{
 		
 		// TODO Auto-generated method stub
 		return s;
+	}
+
+	@Override
+	public Seller getSeller() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

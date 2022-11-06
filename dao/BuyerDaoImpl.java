@@ -1,10 +1,15 @@
 package com.masai.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
+import com.masai.exceptions.BuyerException;
 import com.masai.users.Buyer;
+import com.masai.users.Product;
 import com.masai.utility.DBUtil;
+
 
 public class BuyerDaoImpl implements BuyerDao{
 
@@ -36,5 +41,99 @@ public class BuyerDaoImpl implements BuyerDao{
 		return message;
 	
 	}
+
+	@Override
+	public String registerBuyer(Buyer buyer) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String Buy(String Buyer_email, String Product_Name)throws BuyerException {
+		
+		String result = "buyer is not registered";
+		
+		
+
+		try(Connection conn= DBUtil.provideConnection()) {
+			
+			PreparedStatement ps= conn.prepareStatement("Select b_id from buyer where b_email=?");
+
+			ps.setString(1,Buyer_email);
+
+			ResultSet rs=	ps.executeQuery();
+	
+			if(rs.next()) {
+				
+				PreparedStatement ps2= conn.prepareStatement("Select p_id from product where p_name= ?");
+				ps2.setString(1,Product_Name);
+				
+				ResultSet rs2=	ps2.executeQuery();
+				
+				// id existed
+				if(rs2.next()) {
+					System.out.println("Second");
+					  result = Product_Name +" buyed successfully";
+					   
+					   SellerDao seller = new SellerDaoImpl();
+					   seller.DeleteProduct(rs2.getInt("p_id"));
+				}
+				// if not
+				else
+					 throw new BuyerException("Product deosn't exist");
+			
+			  }
+			
+				
+			else {				
+				 throw new BuyerException("Buyer deosn't exist");
+			}
+		}
+			catch (SQLException e) {
+			
+		}		
+		return result;
+	}
+
+	@Override
+	public void viewItems(String c) {
+		  List<Product> products = null;
+			
+			try(Connection conn= DBUtil.provideConnection()) {
+				
+				PreparedStatement ps= conn.prepareStatement("Select * from Product where p_category=?");
+							
+				ps.setString(1, c);
+				
+				
+//		    ResultSet rs=  ps.getResultSet();
+				ResultSet rs=	ps.executeQuery();
+				while(rs.next()) {
+					System.out.println(rs.getString("p_name"));
+				}
+				
+		    
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			
+			
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		
 }

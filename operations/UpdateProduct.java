@@ -1,11 +1,14 @@
 package com.masai.operations;
 
 
+import java.sql.Connection;
 import java.util.Scanner;
+
 
 import com.masai.dao.SellerDao;
 import com.masai.dao.SellerDaoImpl;
 import com.masai.users.Product;
+import com.masai.utility.DBUtil;
 
 public class UpdateProduct {
 
@@ -21,19 +24,20 @@ public static void main(String[] args) {
 		System.out.println("Enter the price of item");
 		int price = sc.nextInt();
 		
+		System.out.println("Enter the quantity of item");
+		int quantity = sc.nextInt();
+		
 		
 		System.out.println("Enter the category of Item");
 		String category = sc.next();
 		
-		SellerDao s = new SellerDaoImpl();
+		SellerDao s = new SellerDaoImpl();		
 		
-		
-		
-		//make the objec and pass the data
 		Product p  = new Product();
 		p.setProductName(name);
 		p.setProductPrice(price);
 		p.setProductCategory(category);
+		p.setQuantity(quantity);
 		
 		
 		
