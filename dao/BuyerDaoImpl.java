@@ -1,5 +1,6 @@
 package com.masai.dao;
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -60,9 +61,11 @@ public class BuyerDaoImpl implements BuyerDao{
 			PreparedStatement ps= conn.prepareStatement("Select b_id from buyer where b_email=?");
 
 			ps.setString(1,Buyer_email);
-
+			
+			// email- product -> delete/msg
 			ResultSet rs=	ps.executeQuery();
 	
+			// id exists
 			if(rs.next()) {
 				
 				PreparedStatement ps2= conn.prepareStatement("Select p_id from product where p_name= ?");
@@ -70,10 +73,10 @@ public class BuyerDaoImpl implements BuyerDao{
 				
 				ResultSet rs2=	ps2.executeQuery();
 				
-				// id existed
+				// id exists
 				if(rs2.next()) {
-					System.out.println("Second");
-					  result = Product_Name +" buyed successfully";
+					
+					  result = Product_Name +" successfully done";
 					   
 					   SellerDao seller = new SellerDaoImpl();
 					   seller.DeleteProduct(rs2.getInt("p_id"));
@@ -84,7 +87,7 @@ public class BuyerDaoImpl implements BuyerDao{
 			
 			  }
 			
-				
+			// if not
 			else {				
 				 throw new BuyerException("Buyer deosn't exist");
 			}
